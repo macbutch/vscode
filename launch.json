@@ -1,0 +1,48 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to Nox",
+      "port": 9229,
+      "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Nox service",
+      "preLaunchTask": "BuildNox",
+      "cwd": "${workspaceFolder}/nox-controller/nox",
+      "program": "${workspaceFolder}/nox-controller/nox/dist/js/server.js",
+      "env": {
+        "NOX_DISABLE_LOCAL": true,
+        "NOX_CACHE_PATH": "/tmp/nox/cache",
+        "RESIN_DEVICE_UUID": "mbair",
+        "RESIN_DEVICE_NAME_AT_INIT": "mbair"
+      }
+    },
+    {
+      "name": "Debug Jest Tests",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}/nox-controller/nox",
+      "program": "${workspaceRoot}/nox-controller/nox/node_modules/.bin/jest",
+      "args": ["--runInBand"],
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "NOX_DISABLE_LOCAL": true,
+        "NOX_CACHE_PATH": "/tmp/nox/cache",
+        "RESIN_DEVICE_UUID": "mbair",
+        "RESIN_DEVICE_NAME_AT_INIT": "mbair"
+      }
+    }
+  ]
+}
